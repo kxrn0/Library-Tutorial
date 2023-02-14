@@ -47,6 +47,7 @@ exports.bookinstance_create_get = (req, res, next) => {
 		if (err) {
 			return next(err);
 		}
+
 		// Successful, so render.
 		res.render("bookinstance_form", {
 			title: "Create BookInstance",
