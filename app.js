@@ -15,6 +15,9 @@ const app = express();
 const mongoose = require("mongoose");
 const dbURI = `mongodb+srv://byme:${process.env.PASS}@cluster0.gfn4uid.mongodb.net/?retryWrites=true&w=majority`;
 
+const compression = require("compression");
+const helmet = require("helmet");
+
 async function main() {
 	await mongoose.connect(dbURI);
 
@@ -29,6 +32,8 @@ main().catch((error) => console.log(error));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+app.use(helmet());
+app.use(compression());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
